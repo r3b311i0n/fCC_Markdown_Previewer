@@ -7,14 +7,6 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            markdownString: ""
-        };
-
-        this.handleEditor = this.handleEditor.bind(this);
-    }
-
-    mark(string) {
         marked.setOptions({
             renderer: new marked.Renderer(),
             gfm: true,
@@ -26,6 +18,14 @@ class App extends Component {
             smartypants: false
         });
 
+        this.state = {
+            markdownString: ""
+        };
+
+        this.handleEditor = this.handleEditor.bind(this);
+    }
+
+    mark(string) {
         this.setState({markdownString: marked(string)});
     }
 
@@ -36,20 +36,14 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <header>
-                    <div className="App-header">
-                        <h1>Markdown Previewer</h1>
-                    </div>
-                </header>
                 <main>
                     <div>
-                        <div className="Editor-container">
-                            <textarea className="Code-editor" cols="78" rows="27" spellCheck="true"
+                        <div className="Editor Floater">
+                            <textarea className="Code-editor" cols="75" rows="27" spellCheck="true"
                                       autoFocus="true" onChange={this.handleEditor}/>
                         </div>
-                        <div className="Editor-container">
-                            <textarea className="Code-preview" cols="78" rows="27"
-                                      readOnly="true" value={this.state.markdownString}/>
+                        <div className="Editor Code-previewer"
+                             dangerouslySetInnerHTML={{__html: this.state.markdownString}}>
                         </div>
                     </div>
                 </main>
