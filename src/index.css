@@ -1,9 +1,3 @@
-@media screen and (min-width: 320px) {
-	#root {
-		width: 80rem;
-	}
-}
-
 body {
   margin: 0;
   padding: 0;
